@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo noupdate="1">
+<odoo>
 
-    <record id="payment.payment_provider_cod" model="payment.provider">
-        <field name="code">cod</field>
+    <!-- Define the inline form view -->
+    <record id="payment_cod_inline_form" model="ir.ui.view">
+        <field name="name">payment.cod.inline.form</field>
+        <field name="model">payment.provider</field>
+        <field name="arch" type="xml">
+            <form string="COD Payment Provider">
+                <group>
+                    <field name="name"/>
+                    <field name="code"/>
+                </group>
+            </form>
+        </field>
     </record>
 
+    <record id="payment_cod_provider" model="payment.provider">
+        <field name="name">Cash on Delivery</field>
+        <field name="code">cod</field>
+        <field name="inline_form_view_id" ref="payment_cod_inline_form"/>
+        <field name="allow_tokenization">True</field>
+    </record>
 </odoo>
